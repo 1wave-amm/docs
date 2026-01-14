@@ -1,44 +1,44 @@
 # Product overview
 
-**1wave** è un prodotto “liquidity as a service” su **Base** che combina:
+**1wave** is a “liquidity as a service” product on **Base** that combines:
 
-- un DEX/AMM (WaveSwap) basato su **1inch Aqua**
-- vault Pro (FactorDAO Studio) che usano un adapter Aqua (AquaAdapter) per gestire strategie/pairs
-- un sistema di **points** (WavePointToken + Merkl + Points Service) per incentivare attività e retention.
+- a DEX/AMM (WaveSwap) built on **1inch Aqua**
+- Pro vaults (FactorDAO Studio) that use an Aqua adapter (AquaAdapter) to manage pairs/strategies
+- a **points system** (WavePointToken + Merkl + Points Service) to incentivize activity and retention.
 
-## Cosa fa l’utente
+## What users do
 
 ### Swap
 
-L’utente effettua swap su Base tramite WaveSwap, che opera contro strategie Aqua pubblicate dal maker (AquaAdapter).
+Users swap on Base through WaveSwap, which trades against Aqua strategies published by the maker (AquaAdapter).
 
 ### Vaults
 
-L’utente può:
+Users can:
 
-- depositare/ritirare in vault esistenti
-- (se abilitato) creare una nuova vault Pro, configurare pair (setPair) e pubblicarle (publishPairs).
+- deposit/withdraw into existing vaults
+- (if enabled) create a new Pro vault, configure pairs (`setPair`) and publish them (`publishPairs`).
 
 ### Points
 
-L’utente accumula punti in base a:
+Users earn points based on:
 
-- TVL/ownership nelle vault
-- depositi e durata
-- referral
-- boost se possiede determinati token (es. 1INCH/FCTR)
-- campagne Merkl configurate.
+- vault TVL/ownership
+- deposits and holding duration
+- referrals
+- a boost if they hold specific tokens (e.g. 1INCH/FCTR)
+- configured Merkl campaigns.
 
-## Componenti (high level)
+## Components (high level)
 
-- **Frontend (`app/`)**: UI Vite/React + wagmi/RainbowKit, integra swap/vault/points.
-- **Subgraph (`backend/`)**: indicizza eventi (vault, pairs, swap) e fornisce dati via GraphQL.
+- **Frontend (`app/`)**: Vite/React UI + wagmi/RainbowKit; integrates swap/vaults/points.
+- **Subgraph (`backend/`)**: indexes events (vaults, pairs, swaps) and exposes a GraphQL data model.
 - **Smart contracts (`contracts/`)**: WaveSwap, AquaAdapter, WavePointToken.
-- **Points Service (`points-service/`)**: backend Express che aggrega subgraph + Merkl + referral + boost.
+- **Points Service (`points-service/`)**: Express backend that aggregates subgraph + Merkl + referrals + boost.
 
-## Ambienti e scope
+## Environments & scope
 
-- Chain principale: **Base (8453)**
-- Dati “source of truth” per elenco vault/pairs: **subgraph**
-- Dati “enrichment” (se presenti): Stats API esterna (usata dal frontend)
+- Main chain: **Base (8453)**
+- Source of truth for vault/pair discovery: **the subgraph**
+- Optional enrichment: an external Stats API (used by the frontend when configured)
 
