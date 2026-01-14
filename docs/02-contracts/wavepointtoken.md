@@ -1,32 +1,32 @@
 # WavePointToken
 
-## Scopo
+## Purpose
 
-**WavePointToken** è un token ERC20 **non-transferable** progettato per rappresentare punti del programma 1wave e integrarsi con **Merkl**.
+**WavePointToken** is a **non-transferable** ERC20 designed to represent points for the 1wave program and integrate with **Merkl**.
 
-## Proprietà (Base)
+## Properties (Base)
 
 - Address: `0xC9c9C776C45768Ce84ECb3526AE05d02AEFf290F`
 - Chain: Base (8453)
 - Verified: Sourcify ✅
 
-## Funzioni chiave (high level)
+## Key functions (high level)
 
-- `mint(account, amount)` (solo minter autorizzati)
-- `burn(account, amount)` (solo minter autorizzati)
+- `mint(account, amount)` (authorized minters only)
+- `burn(account, amount)` (authorized minters only)
 - `mintBatch(accounts[], amounts[])`
-- `burnForClaim(amount)` (utente brucia propri punti se abilitato)
+- `burnForClaim(amount)` (user burns their own points when enabled)
 
 ## Security model
 
-- Non-transferable di default (può essere sbloccato/whitelistato da governance)
-- Ruoli:
+- Non-transferable by default (can be enabled/whitelisted via governance)
+- Roles:
   - **Minter**: mint/burn
   - **Governor/Guardian**: toggle settings (transfer, whitelist, burn-for-claim)
 
-## Relazione con Merkl / Points Service
+## Relationship with Merkl / Points Service
 
-- Merkl gestisce campaigns e rewards off-chain.
-- Il Points Service aggrega dati e calcola `totalPoints`.
-- Il token on-chain è l’unità “contabile” del programma punti.
+- Merkl manages campaigns and rewards off-chain.
+- The Points Service aggregates data and computes `totalPoints`.
+- The on-chain token is the accounting unit of the points program.
 

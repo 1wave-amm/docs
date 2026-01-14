@@ -13,7 +13,7 @@ forge fmt
 
 ## Deploy (WaveSwap)
 
-Simulazione:
+Dry-run:
 
 ```bash
 forge script script/DeployWaveSwap.s.sol:DeployWaveSwap --rpc-url <RPC_URL>
@@ -30,7 +30,7 @@ forge script script/DeployWaveSwap.s.sol:DeployWaveSwap \
 
 ## Deploy (WavePointToken)
 
-Prerequisiti `.env`:
+`.env` prerequisites:
 
 - `PRIVATE_KEY`
 - `MINTER_ADDRESS`
@@ -47,5 +47,5 @@ forge script script/DeployWavePointToken.s.sol:DeployWavePointToken \
 
 ## Verify (Basescan)
 
-Vedi `contracts/DEPLOYED.md` e script `verify-basescan.sh`.
+See `contracts/DEPLOYED.md` and the `verify-basescan.sh` script.
 

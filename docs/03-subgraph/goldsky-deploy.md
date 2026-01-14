@@ -1,6 +1,6 @@
 # Goldsky deploy
 
-Nel repo `backend/` sono presenti script Yarn per build e deploy su Goldsky.
+The `backend/` package includes Yarn scripts to build and deploy on Goldsky.
 
 ## Build (base testing)
 
@@ -15,8 +15,8 @@ yarn build:base:testing
 yarn deploy:goldsky
 ```
 
-Nota: lo script usa un nome/versione hardcodata (`onewave/backend-0.0.6`). Quando bumpi la versione, aggiorna:
+Note: the script uses a hardcoded name/version (`onewave/backend-0.0.6`). When you bump the version, update:
 
-- consumer (frontend / points-service) se puntano a un endpoint specifico
-- eventuali documenti in **Deployments & endpoints**.
+- consumers (frontend / points-service) if they point to a specific endpoint
+- any docs under **Deployments & endpoints**.
 

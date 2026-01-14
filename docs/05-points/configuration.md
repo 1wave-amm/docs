@@ -29,7 +29,7 @@ File: `points-service/.env`
 - `TOKEN_1INCH_ADDRESS`
 - `TOKEN_FCTR_ADDRESS`
 
-## Rates (calcolo punti)
+## Rates (points calculation)
 
 - `POINTS_PER_USD_TVL`
 - `POINTS_PER_USD_DEPOSIT_PER_DAY`

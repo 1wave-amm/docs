@@ -1,20 +1,20 @@
 # Smart contracts — overview
 
-Il package `contracts/` contiene i contratti core del prodotto.
+The `contracts/` package contains the core on-chain components of the product.
 
-## Componenti
+## Components
 
-- **WaveSwap** (`src/WaveSwap.sol`): AquaApp che esegue gli swap.
-- **AquaAdapter** (`adapter/AquaAdapter.sol`): maker adapter che configura pair e pubblica strategie su Aqua.
-- **WavePointToken** (`src/WavePointToken.sol`): token punti non-transferable, compatibile con Merkl.
+- **WaveSwap** (`src/WaveSwap.sol`): AquaApp that executes swaps.
+- **AquaAdapter** (`adapter/AquaAdapter.sol`): maker adapter that configures pairs and publishes strategies to Aqua.
+- **WavePointToken** (`src/WavePointToken.sol`): non-transferable points token designed to work with Merkl.
 
-## Perché questa separazione?
+## Why this separation?
 
-- WaveSwap si occupa **solo** di swap e quote.
-- AquaAdapter gestisce **strategie/pairs** e il lifecycle (publishPairs, nonce, dock/ship).
-- Il subgraph indicizza i principali eventi per costruire il modello dati usato da frontend e points.
+- WaveSwap focuses on **swap execution and quoting**.
+- AquaAdapter manages **pairs/strategies** and their lifecycle (`publishPairs`, nonces, dock/ship).
+- The subgraph indexes key events to produce the data model consumed by the frontend and points system.
 
 ## Deployments
 
-Vedi **[Addresses](../07-reference/addresses.md)** per i valori on-chain e endpoints.
+See **[Addresses](../07-reference/addresses.md)** for on-chain values and endpoints.
 

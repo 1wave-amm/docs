@@ -1,13 +1,13 @@
 # Swap (frontend)
 
-## Obiettivo
+## Goal
 
-Fornire una UI per:
+Provide a UI for:
 
-- selezione token (pair)
-- quote (exact in / exact out)
-- slippage
-- esecuzione swap su WaveSwap.
+- token selection (pair)
+- quoting (exact in / exact out)
+- slippage control
+- executing swaps on WaveSwap.
 
 ## Address WaveSwap
 
@@ -21,6 +21,6 @@ Override:
 
 ## Dati
 
-- Pairs/token list: principalmente da costanti e/o subgraph a seconda del flusso UI.
-- Quote: calcolate via chiamate view (quote) o calcoli client-side (dipende dall’implementazione hook).
+- Pairs/token lists: mostly from constants and/or the subgraph depending on the UI flow.
+- Quotes: computed via view calls (quote functions) or client-side math (depending on the hook implementation).
 

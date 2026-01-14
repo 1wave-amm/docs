@@ -1,7 +1,7 @@
 # 1wave Documentation
 
-Questa pagina è la home per **GitHub Pages** (Jekyll).  
-Per GitBook, la home è `docs/README.md`.
+This is the **GitHub Pages** (Jekyll) landing page.  
+For GitBook, the homepage is `docs/README.md`.
 
 ## Start here
 

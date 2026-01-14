@@ -1,43 +1,43 @@
 # Create vault flow
 
-Questa pagina descrive la pipeline end-to-end usata dal frontend per creare una **Studio Pro Vault** e abilitarla su 1wave.
+This page describes the end-to-end pipeline used by the frontend to create a **Studio Pro Vault** and make it usable in 1wave.
 
 ## Step 1 — Deploy Vault
 
-- Usa FactorDAO SDK Studio (`StudioProFactory`).
-- Configura:
-  - assets whitelisted
-  - fee (deposit/withdraw/management/performance)
-  - adapter: include AquaAdapter negli `initialManagerAdapters` e `initialWithdrawAdapters`
-  - denominator token e accounting adapter (Chainlink).
+- Uses the FactorDAO Studio SDK (`StudioProFactory`).
+- Configures:
+  - whitelisted assets
+  - fees (deposit/withdraw/management/performance)
+  - adapter: includes AquaAdapter in `initialManagerAdapters` and `initialWithdrawAdapters`
+  - denominator token and accounting adapter (Chainlink).
 
 ## Step 2 — Setup pairs + publishPairs (batch)
 
-Per ogni pair selezionata:
+For each selected pair:
 
-- costruisce una tx `setPair(token0, token1, feeBps, feed0, feed1, dexes=[WaveSwap])`
+- builds a `setPair(token0, token1, feeBps, feed0, feed1, dexes=[WaveSwap])` transaction
 
-Poi aggiunge:
+Then adds:
 
 - `publishPairs()`
 
-E invia tutto in batch con:
+And sends everything in a batch with:
 
-- `executeByManager([...])` sulla vault.
+- `executeByManager([...])` on the vault.
 
 ## Step 3 — Public strategy
 
-Imposta la public strategy (0, blocks) in modo che la vault sia utilizzabile.
+Sets the public strategy (0, blocks) so the vault is usable.
 
 ## Step 4 — Deposit strategy
 
-Imposta una deposit strategy che esegue (tipicamente) `publishPairs()` su deposit per mantenere strategie aggiornate.
+Sets a deposit strategy that (typically) runs `publishPairs()` on deposits to keep strategies up to date.
 
 ## Step 5 — Save metadata (Stats API)
 
-Se `VITE_STATS_API_BASE_URL` è configurata, salva metadata/strategia via:
+If `VITE_STATS_API_BASE_URL` is configured, it saves metadata/strategy via:
 
 - `POST /strategies/save`
 
-con signature dell’utente.
+using a user signature.
 

@@ -1,23 +1,23 @@
 # FAQ
 
-## Perché Aqua / WaveSwap?
+## Why Aqua / WaveSwap?
 
-WaveSwap è un’AquaApp che esegue swap contro strategie gestite su **1inch Aqua**. Questo permette di:
+WaveSwap is an AquaApp that swaps against strategies managed on **1inch Aqua**. This allows you to:
 
-- separare logica di swap (app) e gestione strategie/liquidità (maker adapter)
-- aggiornare/publishare pair/strategie in modo controllato.
+- separate swap logic (app) from liquidity/strategy management (maker adapter)
+- publish and update pairs/strategies in a controlled way.
 
-## Perché il subgraph è “source of truth” per la lista vault?
+## Why is the subgraph the source of truth for the vault list?
 
-Nel frontend, la presenza di `AquaPair` indicizzate è il segnale che una vault è “attiva” (ha pairs pubblicate) e quindi va mostrata, anche se le metriche esterne non sono disponibili.
+In the frontend, the existence of indexed `AquaPair` entities is the signal that a vault is “active” (it has published pairs) and should be displayed, even if external metrics are not available.
 
 ## Points token vs Merkl points
 
-- `WavePointToken` è il token on-chain (non-transferable) usato come unità punti.
-- Merkl calcola rewards/points off-chain tramite campagne e li espone via API.
-- Il Points Service aggrega Merkl + subgraph + referral + boost.
+- `WavePointToken` is the on-chain (non-transferable) token used as the points unit.
+- Merkl computes rewards/points off-chain via campaigns and exposes them via API.
+- The Points Service aggregates Merkl + subgraph + referrals + boost.
 
-## I referral persistono?
+## Do referrals persist?
 
-Attualmente no: sono in-memory nel processo del Points Service. Per produzione serve DB.
+Not currently: referrals are stored in-memory inside the Points Service process. Production requires a database.
 

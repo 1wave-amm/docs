@@ -1,26 +1,26 @@
 # Merkl integration
 
-## Ruolo di Merkl
+## Role of Merkl
 
-Merkl è usato come “calculation/indexing layer” per programmi a punti:
+Merkl is used as a “calculation/indexing layer” for point programs:
 
-- campaign setup (es. deposit tracking)
+- campaign setup (e.g. deposit tracking)
 - rewards aggregation
-- API per estrarre rewards per token/campaign.
+- APIs to fetch rewards by token/campaign.
 
-## API usate dal Points Service
+## APIs used by the Points Service
 
-- `/campaigns` (per elencare campaigns create dal creator)
-- `/rewards` (rewards per campaign, paginata)
-- `/rewards/token/` (rewards per token, paginata)
+- `/campaigns` (list campaigns created by the creator)
+- `/rewards` (campaign rewards, paginated)
+- `/rewards/token/` (token rewards, paginated)
 
-Nota importante:
+Important note:
 
-- `chainId` nelle API Merkl è la chain dove è deployato il points token (qui: Base 8453), non necessariamente la chain dove avviene l’attività (dipende dal setup Merkl).
+- `chainId` in Merkl APIs refers to the chain where the points token is deployed (here: Base 8453), not necessarily the chain where the activity happens (depends on Merkl setup).
 
 ## Best practices
 
-- Cache dei risultati Merkl (per evitare chiamate costose “all token rewards complete”).
-- Usare paging/limit e job async per leaderboard.
-- Validare schema risposta (Merkl può differire tra versioni/fields).
+- Cache Merkl results (to avoid expensive “all token rewards complete” calls).
+- Use paging/limits and async jobs for leaderboards.
+- Validate response schema (Merkl can differ across versions/fields).
 

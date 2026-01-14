@@ -1,46 +1,46 @@
 # Points calculation
 
-Questa pagina documenta la logica di calcolo implementata nel Points Service.
+This page documents the points calculation logic implemented in the Points Service.
 
-## Input principali
+## Main inputs
 
-- Posizioni utente per vault (da subgraph):
-  - `valueUSD` (stima)
-  - `tvlUSD` (stima)
-  - `totalDepositedUSD` (stima)
+- User vault positions (from subgraph):
+  - `valueUSD` (estimated)
+  - `tvlUSD` (estimated)
+  - `totalDepositedUSD` (estimated)
   - `daysDeposited`
-- `merklPoints` (somma rewards Merkl)
+- `merklPoints` (sum of Merkl rewards)
 - `referralCount`
-- `hasTokenBoost` (balance check su token abilitati)
+- `hasTokenBoost` (balance check on enabled tokens)
 
-## Componenti
+## Components
 
 ### Vault ownership points
 
-Idea: premiare la quota di TVL posseduta.
+Goal: reward the user’s share of vault TVL.
 
 ### Deposit amount points
 
-Idea: premiare quantità depositata × tempo.
+Goal: reward deposited amount × time.
 
 ### Time based points
 
-Bonus per holder > 30 giorni (crescita fino a ~2x su 1 anno, con peso ridotto).
+Bonus for holders > 30 days (grows up to ~2x at 1 year, with reduced weight).
 
 ### Vault count points
 
-Bonus per numero di vault distinte.
+Bonus for the number of distinct vaults.
 
 ### Referral points
 
-Bonus proporzionale a `basePoints` e al numero referral.
+Bonus proportional to `basePoints` and the number of referrals.
 
 ### Token boost
 
-Moltiplicatore applicato se l’utente possiede almeno uno tra `TOKEN_1INCH_ADDRESS` o `TOKEN_FCTR_ADDRESS`.
+Multiplier applied if the user holds at least one of `TOKEN_1INCH_ADDRESS` or `TOKEN_FCTR_ADDRESS`.
 
 ## Output
 
-- `breakdown` completo
+- full `breakdown`
 - `totalPoints = (basePoints + referralPoints) * boostMultiplier`
 

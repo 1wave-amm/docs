@@ -2,39 +2,39 @@
 
 ## Frontend: wallet/RPC issues
 
-- `VITE_WALLETCONNECT_PROJECT_ID` presente e valido
-- `VITE_ALCHEMY_API_KEY` presente (obbligatoria)
-- wallet su chain **Base**
+- `VITE_WALLETCONNECT_PROJECT_ID` is set and valid
+- `VITE_ALCHEMY_API_KEY` is set (required)
+- wallet is on **Base**
 
-## Vault list vuota
+## Vault list is empty
 
-- Subgraph raggiungibile
-- Esistono `AquaPair` nel subgraph (pairs configurate + publishPairs eseguita)
-- Se Stats API non configurata: ok, ma metriche incomplete
+- Subgraph is reachable
+- `AquaPair` entities exist in the subgraph (pairs configured + `publishPairs` executed)
+- If Stats API is not configured: OK, but metrics will be incomplete
 
-## Subgraph non synca
+## Subgraph is not syncing
 
-Locale:
+Local:
 
 - container up (graph-node/postgres/ipfs)
-- `RPC_URL` nel formato `network:rpc` (es. `base:https://...`)
+- `RPC_URL` is in `network:rpc` format (e.g. `base:https://...`)
 
 Prod (Goldsky):
 
 - status deploy/sync
-- address e startBlock corretti
+- correct address and startBlock
 
-## Points Service ritorna 0
+## Points Service returns 0
 
-- `SUBGRAPH_URL` corretto
+- correct `SUBGRAPH_URL`
 - Merkl:
-  - `POINTS_TOKEN_ADDRESS` impostato
-  - `MERKL_CREATOR_ADDRESS` / API key ok
+  - `POINTS_TOKEN_ADDRESS` set
+  - `MERKL_CREATOR_ADDRESS` / API key OK
 - Boost:
-  - `RPC_URL` raggiungibile
-  - token addresses corretti
+  - `RPC_URL` reachable
+  - correct token addresses
 
-## Referral non persiste
+## Referrals do not persist
 
-Atteso (in-memory). Per produzione: DB.
+Expected (in-memory). Production requires a database.
 

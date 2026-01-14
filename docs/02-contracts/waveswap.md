@@ -1,10 +1,10 @@
 # WaveSwap
 
-## Scopo
+## Purpose
 
-**WaveSwap** è un’AquaApp che implementa uno swap AMM (formula x·y=k) con fee configurabile (basis points) e opera contro strategie su **1inch Aqua**.
+**WaveSwap** is an AquaApp implementing an AMM swap (constant product \(x \cdot y = k\)) with configurable fees (basis points), trading against strategies on **1inch Aqua**.
 
-## API principali (high level)
+## Main API (high level)
 
 - `quoteExactIn(strategy, zeroForOne, amountIn) -> amountOut`
 - `quoteExactOut(strategy, zeroForOne, amountOut) -> amountIn`
@@ -13,28 +13,28 @@
 
 ## Strategy
 
-WaveSwap calcola `strategyHash = keccak256(abi.encode(strategy))`.
+WaveSwap computes `strategyHash = keccak256(abi.encode(strategy))`.
 
-Campi:
+Fields:
 
-- `maker`: address che fornisce la liquidità (AquaAdapter)
+- `maker`: liquidity provider address (AquaAdapter)
 - `token0`, `token1`
 - `feeBps`
-- `salt` (nonce/salt per distinguere strategie)
+- `salt` (nonce/salt to make strategies unique)
 
-## Meccanica swap (ExactIn)
+## Swap mechanics (ExactIn)
 
-1. Calcola `amountOut` con fee.
+1. Compute `amountOut` including fee.
 2. `AQUA.pull(maker, strategyHash, tokenOut, amountOut, to)` (pull output).
-3. `transferFrom` tokenIn dall’utente al contract.
-4. `approve` ad Aqua e `AQUA.push(...)` tokenIn verso la strategia.
-5. Verifica push e chiama `maker.publishPairs()` per riallineare strategie.
-6. Emissione evento `SwapExactIn`.
+3. `transferFrom` tokenIn from the user to the contract.
+4. `approve` Aqua and `AQUA.push(...)` tokenIn into the strategy.
+5. Verify the push and call `maker.publishPairs()` to keep strategies in sync.
+6. Emit `SwapExactIn`.
 
-## Eventi
+## Events
 
 - `SwapExactIn(vault, tokenIn, tokenOut, amountIn, amountOut)`
 - `SwapExactOut(vault, tokenIn, tokenOut, amountIn, amountOut)`
 
-Il subgraph indicizza questi eventi nella entity `Swap`.
+The subgraph indexes these events into the `Swap` entity.
 

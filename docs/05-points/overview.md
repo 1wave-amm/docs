@@ -1,22 +1,22 @@
 # Points — overview
 
-Il sistema punti di 1wave è composto da:
+The 1wave points system is made of:
 
 - **WavePointToken** (on-chain, non-transferable)
-- **Merkl** (campaigns + rewards/points off-chain via API)
-- **Points Service** (API HTTP che aggrega tutto e calcola i punti finali)
+- **Merkl** (campaigns + off-chain rewards/points via API)
+- **Points Service** (HTTP API that aggregates everything and computes final points)
 
-## Cosa produce
+## Output
 
-Per un address utente, il servizio restituisce:
+For a given user address, the service returns:
 
 - `totalPoints`
-- un `breakdown` per componenti (vault ownership, deposit, time bonus, referral, merkl, boost)
-- `vaultPositions` (per spiegabilità)
+- a `breakdown` by component (vault ownership, deposit, time bonus, referral, Merkl, boost)
+- `vaultPositions` (for explainability)
 
-## Dipendenze
+## Dependencies
 
-- Subgraph (deposit/withdraw history e vault state)
+- Subgraph (deposit/withdraw history and vault state)
 - Merkl API (rewards)
 - RPC Base (token boost checks)
 

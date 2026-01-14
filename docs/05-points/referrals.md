@@ -1,25 +1,25 @@
 # Referrals
 
-## Stato attuale
+## Current behavior
 
-Il referral system nel Points Service è **in-memory**:
+The referral system in the Points Service is **in-memory**:
 
 - `referee -> referrer`
 - `referrer -> referralCount`
 
-Implica:
+This means:
 
-- i referral **non persistono** a restart
-- non c’è dedup cross-deploy / multi-instance.
+- referrals **do not persist** across restarts
+- there is no cross-deploy / multi-instance deduplication.
 
 ## API
 
-- `POST /points/referral` registra un referral (no self-referral, no overwrite)
-- `GET /points/:address/referral` restituisce referrer e count
+- `POST /points/referral` registers a referral (no self-referral, no overwrite)
+- `GET /points/:address/referral` returns referrer and count
 
 ## Production hardening
 
-- Persistenza su DB (Postgres/Mongo)
-- Rate limit e anti-abuse
-- Idempotency keys / signatures se necessario
+- Persistence in a DB (Postgres/Mongo)
+- Rate limiting and anti-abuse protections
+- Idempotency keys / signatures if required
 

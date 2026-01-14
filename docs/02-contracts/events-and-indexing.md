@@ -1,52 +1,52 @@
 # Events & indexing
 
-Questa pagina collega **eventi on-chain** → **entity del subgraph** → **consumer (frontend/points)**.
+This page maps **on-chain events** → **subgraph entities** → **consumers (frontend/points)**.
 
 ## WaveSwap → Swap
 
-Eventi:
+Events:
 
 - `SwapExactIn(...)`
 - `SwapExactOut(...)`
 
 Subgraph entity:
 
-- `Swap` (campi: vault, tokenIn, tokenOut, amountIn, amountOut, swapType, block, timestamp, txid)
+- `Swap` (fields: vault, tokenIn, tokenOut, amountIn, amountOut, swapType, block, timestamp, txid)
 
-Consumer:
+Consumers:
 
 - frontend (analytics/UX)
-- points-service (se usi swap come segnale per campagne Merkl)
+- points-service (if you use swaps as a signal for Merkl campaigns)
 
 ## Vault (StudioProVault) → VaultDeposit / VaultWithdraw
 
-Eventi:
+Events:
 
 - `Deposit(...)`
 - `Withdraw(...)`
 
-Entity:
+Entities:
 
 - `VaultDeposit`
 - `VaultWithdraw`
 
-Consumer:
+Consumers:
 
-- points-service (posizioni utente, daysDeposited, totalDepositedUSD)
+- points-service (user positions, daysDeposited, totalDepositedUSD)
 
 ## AquaAdapter (emesso dalla vault) → AquaPair / AquaStrategy
 
-Eventi:
+Events:
 
 - `PairSet(token0, token1, feeBps, pairHash)`
 - `StrategyShipped(pairHash, strategyHash)`
 
-Entity:
+Entities:
 
-- `AquaPair` (source of truth per lista vault “attive”)
+- `AquaPair` (source of truth for the “active vaults” list)
 - `AquaStrategy`
 
-Consumer:
+Consumers:
 
 - frontend (vault list/pairs)
 

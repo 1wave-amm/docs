@@ -5,7 +5,7 @@ File: `app/.env`
 ## Required
 
 - `VITE_WALLETCONNECT_PROJECT_ID`: WalletConnect project ID (RainbowKit).
-- `VITE_ALCHEMY_API_KEY`: necessario per RPC Base (senza, l’RPC diventa `ALCHEMY_API_KEY_NOT_CONFIGURED.invalid`).
+- `VITE_ALCHEMY_API_KEY`: required for Base RPC (without it, the RPC URL becomes `ALCHEMY_API_KEY_NOT_CONFIGURED.invalid`).
 
 ## Optional
 
@@ -15,5 +15,5 @@ File: `app/.env`
 
 ## Notes
 
-- L’app è configurata per usare **solo Base** in `src/lib/web3/config.ts`.
+- The app is configured to use **Base only** in `src/lib/web3/config.ts`.
 

@@ -1,6 +1,6 @@
 # Mappings (handlers)
 
-Entry point: `backend/src/mappings.ts` esporta i handler:
+Entry point: `backend/src/mappings.ts` exports the handlers:
 
 - `handlers/factory.ts`
 - `handlers/vault.ts`
@@ -9,16 +9,16 @@ Entry point: `backend/src/mappings.ts` esporta i handler:
 
 ## Factory: VaultCreated
 
-- Filtra le vault: indicizza solo quelle che includono l’**AquaAdapter** tra gli `initialManagerAdapters`.
-- Crea la dataSource template per la vault (`StudioProVault.create(...)`).
-- Inizializza la entity `Vault`.
+- Filters vaults: it only indexes those that include **AquaAdapter** in `initialManagerAdapters`.
+- Creates the vault template dataSource (`StudioProVault.create(...)`).
+- Initializes the `Vault` entity.
 
 ## Vault: Deposit / Withdraw
 
-- Salva `VaultDeposit` e `VaultWithdraw`.
-- Aggiorna campi della `Vault` (name/symbol/totalSupply/pricePerShare/netVaultValue) chiamando funzioni view del vault contract.
+- Stores `VaultDeposit` and `VaultWithdraw`.
+- Updates `Vault` fields (name/symbol/totalSupply/pricePerShare/netVaultValue) by calling view functions on the vault contract.
 
-## AquaAdapter events (emessi sulla vault)
+## AquaAdapter events (emitted from the vault)
 
 - `PairSet` → `AquaPair`
 - `StrategyShipped` → `AquaStrategy`

@@ -2,39 +2,39 @@
 
 ## Swap flow
 
-1. Frontend costruisce la `Strategy` (maker, token0, token1, feeBps, salt).
-2. L’utente firma e invia una tx a `WaveSwap.swapExactIn` o `swapExactOut`.
+1. The frontend builds a `Strategy` (maker, token0, token1, feeBps, salt).
+2. The user signs and submits a transaction to `WaveSwap.swapExactIn` or `swapExactOut`.
 3. WaveSwap:
-   - calcola quote con formula x·y=k (fee inclusive)
-   - `pull` tokenOut dalla strategia Aqua verso il recipient
-   - riceve tokenIn dall’utente e fa `push` a Aqua
-   - chiama `publishPairs()` sul maker (AquaAdapter)
-   - emette `SwapExactIn/Out`.
-4. Il subgraph indicizza l’evento e salva una entity `Swap`.
+   - computes the quote using the \(x \cdot y = k\) formula (fee included)
+   - `pull`s tokenOut from the Aqua strategy to the recipient
+   - receives tokenIn from the user and `push`es it into Aqua
+   - calls `publishPairs()` on the maker (AquaAdapter)
+   - emits `SwapExactIn/Out`.
+4. The subgraph indexes the event and stores a `Swap` entity.
 
 ## Vault flow (create + pairs)
 
-1. Frontend usa FactorDAO SDK Studio:
-   - deploy vault via `StudioProFactory`
-   - configura pairs su adapter (setPair)
-   - chiama `publishPairs()` (batch)
-   - imposta public strategy / deposit strategy.
-2. Subgraph:
-   - su `VaultCreated` crea un template dataSource per la vault
-   - indicizza `Deposit`/`Withdraw`, `PairSet`, `StrategyShipped`.
+1. The frontend uses the FactorDAO Studio SDK:
+   - deploys a vault via `StudioProFactory`
+   - configures pairs on the adapter (`setPair`)
+   - calls `publishPairs()` (batched)
+   - sets public strategy / deposit strategy.
+2. The subgraph:
+   - on `VaultCreated` creates a template dataSource for the vault
+   - indexes `Deposit`/`Withdraw`, `PairSet`, `StrategyShipped`.
 
 ## Points flow
 
-1. Points Service riceve request `GET /points/:address`.
-2. Query subgraph:
-   - deposits/withdrawals dell’utente
-   - stato vault (pricePerShare, totalSupply, netVaultValue)
-3. (opzionale) Query Merkl:
-   - rewards per `POINTS_TOKEN_ADDRESS` su `CHAIN_ID`
-4. Referral:
-   - referralCount in-memory
+1. The Points Service receives `GET /points/:address`.
+2. Subgraph query:
+   - the user’s deposits/withdrawals
+   - vault state (pricePerShare, totalSupply, netVaultValue)
+3. (optional) Merkl query:
+   - rewards for `POINTS_TOKEN_ADDRESS` on `CHAIN_ID`
+4. Referrals:
+   - in-memory referralCount
 5. Token boost:
-   - check balance on-chain (RPC Base)
-6. Calcolo finale:
+   - on-chain balance check (Base RPC)
+6. Final computation:
    - breakdown + totalPoints.
 

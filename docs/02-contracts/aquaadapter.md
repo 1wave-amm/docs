@@ -1,44 +1,44 @@
 # AquaAdapter
 
-## Scopo
+## Purpose
 
-**AquaAdapter** è il maker adapter che:
+**AquaAdapter** is the maker adapter that:
 
-- registra/configura pair (token0/token1, fee, Chainlink feeds)
-- pubblica strategie su Aqua (`publishPairs`)
-- mantiene nonce/salt e gestisce il lifecycle delle strategie.
+- registers/configures pairs (token0/token1, fee, Chainlink feeds)
+- publishes strategies to Aqua (`publishPairs`)
+- maintains nonce/salt and manages strategy lifecycle.
 
-## Concetti chiave
+## Key concepts
 
 ### Pair
 
-Una pair è definita da:
+A pair is defined by:
 
 - `token0`, `token1`
 - `feeBps`
-- feeds Chainlink per bilanciamento/valuation
-- lista di DEX (AquaApp) abilitati per quella pair (es. WaveSwap)
+- Chainlink feeds for balancing/valuation
+- the list of enabled DEXes (AquaApps) for that pair (e.g. WaveSwap)
 
 ### Strategy shipping
 
-L’adapter “ship” una strategy ad Aqua per ogni DEX abilitato.
+The adapter “ships” a strategy to Aqua for each enabled DEX.
 
-In sintesi:
+In practice:
 
-- dock (se esiste una strategy precedente)
-- crea nuova strategy con nonce/salt aggiornati
-- ship ad Aqua e salva metadata in storage
+- dock (if a previous strategy exists)
+- create a new strategy with updated nonce/salt
+- ship to Aqua and persist metadata in storage
 
-## Funzioni principali (high level)
+## Main functions (high level)
 
 - `setPair(token0, token1, feeBps, chainlinkFeed0, chainlinkFeed1, dexes[])`
 - `publishPairs()`
 
-Il frontend usa FactorDAO StrategyBuilder per costruire transazioni `setPair(...)` e una `publishPairs()` finale, spesso in batch via `executeByManager` della vault.
+The frontend uses the FactorDAO StrategyBuilder to build `setPair(...)` transactions and a final `publishPairs()` call, often batched via the vault’s `executeByManager`.
 
-## Eventi indicizzati
+## Indexed events
 
-Nel subgraph (template `StudioProVault`):
+In the subgraph (via the `StudioProVault` template):
 
 - `PairSet(token0, token1, feeBps, pairHash)` → entity `AquaPair`
 - `StrategyShipped(pairHash, strategyHash)` → entity `AquaStrategy`

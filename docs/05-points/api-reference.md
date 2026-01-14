@@ -8,11 +8,11 @@ Health check.
 
 ## GET `/points/users/list`
 
-Lista utenti unici che hanno interagito con le vault (deposit/withdraw), estratti dal subgraph.
+List of unique users who interacted with vaults (deposit/withdraw), fetched from the subgraph.
 
 - Query: `?limit=5000` (max 20000)
 
-Risposta:
+Response:
 
 ```json
 { "count": 123, "users": ["0x...", "0x..."] }
@@ -20,11 +20,11 @@ Risposta:
 
 ## GET `/points/:address`
 
-Restituisce i punti completi di un utente.
+Returns the full points payload for a user.
 
 ## POST `/points/batch`
 
-Calcola punti per più address.
+Computes points for multiple addresses.
 
 Body:
 
@@ -34,15 +34,15 @@ Body:
 
 ## GET `/points/:address/merkl`
 
-Restituisce i soli punti Merkl (richiede `POINTS_TOKEN_ADDRESS`).
+Returns Merkl-only points (requires `POINTS_TOKEN_ADDRESS`).
 
 ## GET `/points/:address/referral`
 
-Restituisce il referrer (se presente) e referralCount.
+Returns the referrer (if any) and the referralCount.
 
 ## POST `/points/referral`
 
-Registra un referral.
+Registers a referral.
 
 Body:
 
@@ -52,9 +52,9 @@ Body:
 
 ## GET `/points/merkl/campaigns`
 
-Elenca le campaigns create dal `MERKL_CREATOR_ADDRESS`.
+Lists campaigns created by `MERKL_CREATOR_ADDRESS`.
 
 ## GET `/points/merkl/campaigns/:campaignId/rewards`
 
-Restituisce rewards per una specifica campaign.
+Returns rewards for a specific campaign.
 

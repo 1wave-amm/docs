@@ -1,12 +1,12 @@
 # Frontend — overview
 
-Il frontend (`app/`) è una webapp React che permette:
+The frontend (`app/`) is a React webapp that supports:
 
-- collegamento wallet su **Base**
-- swap via WaveSwap
-- esplorazione vault e dettaglio vault
-- creazione vault Pro + configurazione pairs/strategie
-- integrazione con Points Service per mostrare punti (quando collegato).
+- wallet connection on **Base**
+- swapping via WaveSwap
+- browsing vaults and viewing vault details
+- creating Pro vaults + configuring pairs/strategies
+- integrating with the Points Service to display points (when wired in).
 
 ## Stack
 
@@ -15,8 +15,9 @@ Il frontend (`app/`) è una webapp React che permette:
 - Tailwind CSS + Radix UI
 
 ## Dati e servizi
+## Data sources & services
 
-- **Subgraph**: source of truth per vault/pairs
-- **Stats API** (opzionale): metriche/apy/strategie (via `VITE_STATS_API_BASE_URL`)
-- **Points Service**: punti, referral, campaigns (se configurato e routato nel prodotto)
+- **Subgraph**: source of truth for vault/pairs
+- **Stats API** (optional): metrics/APY/strategies (via `VITE_STATS_API_BASE_URL`)
+- **Points Service**: points, referrals, campaigns (when configured and routed in the product)
 

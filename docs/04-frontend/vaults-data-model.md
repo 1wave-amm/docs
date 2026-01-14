@@ -2,24 +2,24 @@
 
 ## Source of truth: subgraph pairs
 
-Il frontend determina quali vault mostrare partendo da `AquaPair` nel subgraph:
+The frontend determines which vaults to show by starting from `AquaPair` entities in the subgraph:
 
-- se una vault ha almeno una `AquaPair`, è considerata “attiva” e viene mostrata.
+- if a vault has at least one `AquaPair`, it is considered “active” and will be displayed.
 
-## Enrichment: Stats API (opzionale)
+## Enrichment: Stats API (optional)
 
-Se `VITE_STATS_API_BASE_URL` è impostata, il frontend arricchisce la UI con:
+If `VITE_STATS_API_BASE_URL` is set, the frontend enriches the UI with:
 
 - TVL/pricePerShare/apy/performance windows
-- lista token / logo
-- strategie salvate via `/strategies/save`.
+- token lists / logos
+- strategies saved via `/strategies/save`.
 
-## Aggregazione (high level)
+## Aggregation (high level)
 
-La logica fa:
+The flow is:
 
-1. Fetch `AquaPair` (subgraph) → elenco vault
-2. Fetch vault metadata (subgraph) per gli address trovati
-3. Fetch pro-vaults / available-tokens / strategies (Stats API) e merge per address
-4. Fallback: se una vault è nel subgraph ma non nella Stats API, viene comunque inclusa (con dati minimi).
+1. Fetch `AquaPair` (subgraph) → vault list
+2. Fetch vault metadata (subgraph) for the discovered addresses
+3. Fetch pro-vaults / available-tokens / strategies (Stats API) and merge by address
+4. Fallback: if a vault exists in the subgraph but not in the Stats API, it is still included (with minimal data).
 

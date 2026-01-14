@@ -4,15 +4,15 @@ File: `backend/schema.graphql`
 
 ## Entities
 
-- `Vault`: metadata e configurazioni di una vault (assets, fee, totalSupply, pricePerShare, netVaultValue…)
+- `Vault`: vault metadata and configuration (assets, fees, totalSupply, pricePerShare, netVaultValue…)
 - `VaultDeposit`: deposit events (owner, shares, timestamp…)
 - `VaultWithdraw`: withdraw events (receiver, shares, timestamp…)
-- `AquaPair`: pair configurate su adapter (token0/token1/feeBps/pairHash)
-- `AquaStrategy`: strategie pubblicate (pairHash/strategyHash)
-- `Swap`: swap events da WaveSwap (ExactIn/ExactOut)
+- `AquaPair`: adapter pairs (token0/token1/feeBps/pairHash)
+- `AquaStrategy`: published strategies (pairHash/strategyHash)
+- `Swap`: swap events from WaveSwap (ExactIn/ExactOut)
 
-## Principi
+## Principles
 
-- Gli id sono costruiti per evitare collisioni (txHash + logIndex + extra keys).
-- La lista vault mostrata dal frontend è derivata dalle `AquaPair` (se una vault ha pair indicizzate, è “attiva”).
+- IDs are built to avoid collisions (txHash + logIndex + extra keys).
+- The vault list shown by the frontend is derived from `AquaPair` (if a vault has indexed pairs, it is considered “active”).
 

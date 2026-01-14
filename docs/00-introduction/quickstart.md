@@ -1,13 +1,13 @@
 # Quickstart (local dev)
 
-Questa guida ti porta ad avviare rapidamente i componenti principali in locale.
+This guide helps you quickly run the main components locally.
 
-## Prerequisiti
+## Prerequisites
 
 - Node.js 18+
 - `pnpm` (frontend)
-- Docker (per Graph Node locale)
-- RPC Base (Alchmey consigliato per frontend)
+- Docker (for a local Graph Node)
+- Base RPC (Alchemy recommended for the frontend)
 
 ---
 
@@ -20,7 +20,7 @@ cp .env.example .env
 pnpm dev
 ```
 
-Minimo indispensabile in `app/.env`:
+Minimum required in `app/.env`:
 
 - `VITE_WALLETCONNECT_PROJECT_ID=...`
 - `VITE_ALCHEMY_API_KEY=...`
@@ -28,6 +28,7 @@ Minimo indispensabile in `app/.env`:
 ---
 
 ## 2) Subgraph (Graph Node locale)
+## 2) Subgraph (local Graph Node)
 
 ```bash
 cd backend

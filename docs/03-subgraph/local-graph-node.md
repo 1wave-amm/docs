@@ -1,6 +1,6 @@
 # Local Graph Node
 
-Il repo include `docker-compose.yml` per avviare:
+This repo includes a `docker-compose.yml` to run:
 
 - graph-node
 - ipfs

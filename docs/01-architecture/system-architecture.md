@@ -1,15 +1,15 @@
 # System architecture
 
-## Componenti e responsabilità
+## Components & responsibilities
 
-- **WaveSwap (on-chain)**: swap exact in/out contro strategie Aqua, emette eventi di swap.
-- **AquaAdapter (on-chain)**: crea/configura pair e pubblica strategie su Aqua.
-- **StudioProFactory/Vault (on-chain)**: factory e vault Pro (FactorDAO) che emettono deposit/withdraw e chiamano adapter.
-- **Subgraph (off-chain indexing)**: indicizza eventi e produce un modello dati GraphQL per frontend/points.
-- **Points Service (off-chain API)**: calcola punti aggregando subgraph + Merkl + referral + boost.
-- **Frontend (client)**: UI che usa subgraph + stats API + points API e firma transazioni.
+- **WaveSwap (on-chain)**: exact-in/out swaps against Aqua strategies; emits swap events.
+- **AquaAdapter (on-chain)**: configures pairs and publishes strategies to Aqua.
+- **StudioProFactory/Vault (on-chain)**: factory and Pro vaults (FactorDAO) that emit deposit/withdraw events and invoke the adapter.
+- **Subgraph (off-chain indexing)**: indexes events and exposes a GraphQL model for frontend/points.
+- **Points Service (off-chain API)**: computes points by aggregating subgraph + Merkl + referrals + boost.
+- **Frontend (client)**: UI that consumes subgraph + optional Stats API + Points API and signs transactions.
 
-## Diagramma alto livello (Mermaid)
+## High-level diagram (Mermaid)
 
 ```mermaid
 flowchart LR
@@ -33,9 +33,9 @@ flowchart LR
   ps --> fe
 ```
 
-## “Source of truth”
+## Source of truth
 
 - **Vault list / active pairs**: subgraph (`AquaPair`)
-- **Metrics/APY/strategies**: Stats API esterna (se configurata nel frontend)
-- **Points**: aggregazione Points Service (Merkl + subgraph + referral + boost)
+- **Metrics/APY/strategies**: external Stats API (when configured in the frontend)
+- **Points**: Points Service aggregation (Merkl + subgraph + referrals + boost)
 

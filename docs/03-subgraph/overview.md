@@ -1,23 +1,23 @@
 # Subgraph — overview
 
-Il folder `backend/` implementa un subgraph (Graph Protocol) che indicizza eventi di:
+The `backend/` folder implements a Graph Protocol subgraph that indexes events from:
 
 - **StudioProFactory** (VaultCreated)
-- **StudioProVault** (Deposit/Withdraw + eventi adapter)
+- **StudioProVault** (Deposit/Withdraw + adapter events)
 - **WaveSwap** (SwapExactIn/Out)
 
-## Per cosa viene usato
+## What it is used for
 
-- Frontend: elenco vault “attive” e pairs (`AquaPair`) + dati base vault.
-- Points Service: history deposit/withdraw e stime posizione utente.
+- Frontend: list of “active” vaults and pairs (`AquaPair`) + basic vault data.
+- Points Service: deposit/withdraw history and user position estimates.
 
 ## Endpoint
 
-Produzione (Goldsky):
+Production (Goldsky):
 
 - `https://api.goldsky.com/api/public/project_cmgzitcts001c5np28moc9lyy/subgraphs/onewave/backend-0.0.6/gn`
 
-Locale:
+Local:
 
 - `http://localhost:8000/subgraphs/name/1wave/backend`
 
