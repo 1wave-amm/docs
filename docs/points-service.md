@@ -28,11 +28,22 @@ cp .env.example .env
 
 Variabili principali:
 
+- `PORT`: porta HTTP (default `3001`)
 - `SUBGRAPH_URL`: URL del subgraph 1wave
-- `MERKL_API_KEY`: API key per Merkl
+- `MERKL_API_URL`: base URL Merkl (default `https://api.merkl.xyz/v4`)
+- `MERKL_API_KEY`: API key per Merkl (se richiesta)
 - `MERKL_CREATOR_ADDRESS`: address che crea le Merkl campaigns
-- `POINTS_TOKEN_ADDRESS`: address del points token (WavePointToken)
-- `TOKEN_1INCH_ADDRESS`, `TOKEN_FCTR_ADDRESS`: token per i boost.
+- `MERKL_DISTRIBUTOR_ADDRESS`: distributor (se richiesto da setup Merkl)
+- `CHAIN_ID`: chain del points token (default `8453`)
+- `RPC_URL`: usata per token boost checks (default `https://mainnet.base.org`)
+- `POINTS_TOKEN_ADDRESS`: address del points token (WavePointToken / token punti Merkl)
+- `TOKEN_1INCH_ADDRESS`, `TOKEN_FCTR_ADDRESS`: token per i boost
+- Parametri di calcolo:
+  - `POINTS_PER_USD_TVL`
+  - `POINTS_PER_USD_DEPOSIT_PER_DAY`
+  - `POINTS_PER_VAULT_OWNED`
+  - `REFERRAL_BONUS_MULTIPLIER`
+  - `TOKEN_BOOST_MULTIPLIER`
 
 ### Avvio
 
@@ -46,6 +57,12 @@ npm start
 ```
 
 ## API Endpoints
+
+### GET `/points/users/list`
+
+Restituisce una lista di address che hanno interagito con vault (deposit/withdraw) usando il subgraph.
+
+- Query: `?limit=5000` (max 20000)
 
 ### GET `/points/:address`
 
@@ -130,3 +147,12 @@ Note operative:
 - Merkl aggiorna i dati circa ogni ~2 ore.
 - I punti Merkl sono espressi in unità del points token.
 - `chainId` nei Merkl API si riferisce alla chain del points token.
+
+## Implementazione (high level)
+
+Pipeline (per `GET /points/:address`):
+
+1. Query subgraph → posizioni utente (deposit/withdraw aggregati, TVL stimata, giorni depositati).
+2. Query Merkl → rewards per `POINTS_TOKEN_ADDRESS` (somma amount/pending a seconda della risposta API).
+3. Referral count → in-memory.
+4. Calcolo punti → somma componenti + referral bonus + token boost (RPC on-chain balance check).
